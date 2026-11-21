@@ -1,0 +1,32 @@
+# ============================================================
+# Auto-JobHunter — Windows 本地爬虫运行依赖
+# 不包含 GPT、LangChain、向量库、飞书或简历处理依赖
+# ============================================================
+
+# --- Web 框架与基础核心 ---
+fastapi>=0.104.1
+uvicorn>=0.24.0
+pydantic>=2.5.2
+python-dotenv>=1.0.0
+
+# --- 网络请求与 API 交互 ---
+requests>=2.31.0
+urllib3>=2.1.0
+httpx>=0.25.0               # boss_scraper/boss_cli/client.py & auth.py
+
+# --- 🚀 核心 RPA 自动化与防风控引擎 ---
+DrissionPage>=4.0.4         # BOSS/猎聘/51job 静默操作核心 (原 beta 版升稳定版)
+playwright>=1.40.0          # 基础爬虫与 DOM 穿透
+playwright-stealth>=2.0.0   # Stealth().use_sync(...) API 需要 2.x
+fake-useragent>=1.4.0       # UA 伪装 (51job_collector.py)
+
+# --- 🤖 极客终端 CLI 工具与配置文件 ---
+# 对应：boss_scraper/boss_cli/ 全部文件
+click>=8.1.0                # import click (CLI 框架)
+rich>=13.0.0                # from rich.console/table/panel import ...
+qrcode>=7.4.2               # import qrcode (终端二维码登录)
+PyYAML>=6.0.1               # import yaml (boss_detail_fetcher & boss_cli commands)
+browser-cookie3>=0.19.1     # import browser_cookie3 (从本地浏览器提取 Cookie，可选)
+
+# 当前运行模式只保留爬虫与本地岗位管理，不安装 GPT、LangChain、向量库或简历处理依赖。
+Pillow>=10.0.0              # 二维码图片与爬虫页面图像支持
